@@ -21,7 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         nameChange.setText(b.getString("Name"));
         //Toast.makeText(this,b.getString("Name"),Toast.LENGTH_LONG).show();
-        FancyToast.makeText(this,b.getString("Name").toString(),FancyToast.LENGTH_LONG,FancyToast.WARNING,false).show();
+        FancyToast.makeText(this,b.getString("Name").toString(),FancyToast.LENGTH_LONG,FancyToast.INFO,false).show();
 
     }
 }
