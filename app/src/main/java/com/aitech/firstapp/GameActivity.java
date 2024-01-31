@@ -2,6 +2,9 @@ package com.aitech.firstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -25,8 +28,7 @@ public class GameActivity extends AppCompatActivity {
         btnreset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                newGame();
-                FancyToast.makeText(GameActivity.this,"The Game is Reset",FancyToast.LENGTH_SHORT,FancyToast.INFO,false).show();
+               showDialog();
             }
         });
 
@@ -160,5 +162,24 @@ public class GameActivity extends AppCompatActivity {
         flag = 0;
         count = 0;
 
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
+        builder.setMessage("Do you want to reset this game?");
+        builder.setTitle("Alert!");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes",(DialogInterface.OnClickListener)(dialog,which)->{
+            newGame();
+            FancyToast.makeText(GameActivity.this,"The Game is Reset",FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
+        });
+
+        builder.setNegativeButton("No",(DialogInterface.OnClickListener)(dialog,which)->{
+            dialog.cancel();
+            FancyToast.makeText(GameActivity.this,"Cancel operation",FancyToast.LENGTH_SHORT,FancyToast.INFO,false).show();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
